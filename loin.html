@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FoodBridge - Login / Signup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                    "tertiary-fixed": "#dae5df",
+                    "inverse-on-surface": "#f2f0f0",
+                    "on-secondary-fixed": "#2a1800",
+                    "outline": "#6f7a71",
+                    "on-secondary-container": "#795b36",
+                    "tertiary-fixed-dim": "#bec9c3",
+                    "background": "#fbf9f8",
+                    "on-primary-fixed": "#002110",
+                    "primary-container": "#268456",
+                    "on-surface-variant": "#3f4941",
+                    "on-tertiary-fixed-variant": "#3f4945",
+                    "secondary": "#765934",
+                    "on-tertiary-fixed": "#141e1a",
+                    "on-primary-container": "#f6fff5",
+                    "on-surface": "#1b1c1c",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#ffddb6",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#5c421f",
+                    "inverse-primary": "#7ed9a3",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#eae8e7",
+                    "on-primary-fixed-variant": "#005230",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface": "#fbf9f8",
+                    "outline-variant": "#bec9bf",
+                    "secondary-fixed-dim": "#e6c093",
+                    "tertiary": "#545e5a",
+                    "surface-container": "#efeded",
+                    "on-tertiary-container": "#f5fff9",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#7ed9a3",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#006d42",
+                    "surface-variant": "#e4e2e2",
+                    "surface-container-low": "#f5f3f3",
+                    "inverse-surface": "#303030",
+                    "surface-bright": "#fbf9f8",
+                    "primary": "#006a40",
+                    "primary-fixed": "#9af6be",
+                    "secondary-container": "#fed6a7",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#6c7772",
+                    "surface-container-highest": "#e4e2e2",
+                    "on-background": "#1b1c1c",
+                    "surface-dim": "#dbd9d9"
+              },
+              "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+              },
+              "spacing": {
+                    "gutter": "24px",
+                    "xs": "4px",
+                    "sm": "12px",
+                    "lg": "48px",
+                    "container-max": "1280px",
+                    "margin-mobile": "16px",
+                    "xl": "80px",
+                    "md": "24px",
+                    "base": "8px"
+              },
+              "fontFamily": {
+                    "headline-lg": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "body-lg": ["Manrope"]
+              },
+              "fontSize": {
+                    "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                    "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                    "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                    "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                    "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                    "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                    "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+              }
+        },
+      },
+    }
+</script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        .auth-panel {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .auth-panel.hidden-panel {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            transform: translateY(10px);
+        }
+        .auth-panel.active-panel {
+            opacity: 1;
+            pointer-events: auto;
+            position: relative;
+            transform: translateY(0);
+        }
+        .input-halo:focus-within {
+            box-shadow: 0 0 0 2px rgba(0, 106, 64, 0.1);
+            border-color: theme('colors.primary');
+        }
+</style>
+</head>
+<body class="min-h-screen flex flex-col md:flex-row bg-background font-body-md text-body-md text-on-background">
+
+<!-- Left Side: Image & Mission (Desktop Only) -->
+<div class="hidden md:flex md:w-1/2 bg-surface-container relative overflow-hidden flex-col justify-between p-lg xl:p-xl">
+<div class="absolute inset-0 z-0">
+<img alt="Volunteers packing fresh food" class="object-cover w-full h-full opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCixehUeutXhRhYHem2s--4-oPuGVPI983u0twxVCmzurjXW7ajlRWHVrysu54SHgUGoXXK7xZWett4VAfYOa0dwUJa0ATRb8mUVB_W0U0soXIdwePpTBSbe3a4TQ_OQXFAajODkygX9hz8YjEMF5HusVvHnz0n5xOjwNP7IfyQ1c66knoNp339pTniptqPWYxpz8TtY7MM_lCnmHQy6--hsEF0NcD1X-Sx2YVBUxXQ7xmRHkM9wrU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/80 to-transparent"></div>
+</div>
+<div class="relative z-10">
+<a class="inline-flex items-center gap-xs font-headline-md text-headline-md font-bold text-surface-container-lowest" href="Homepage.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+            FoodBridge
+        </a>
+</div>
+<div class="relative z-10 max-w-md">
+<h1 class="font-display-lg text-display-lg text-surface-container-lowest mb-sm">Bridging abundance and need.</h1>
+<p class="font-body-lg text-body-lg text-surface-container-low/90">Join our network of donors and organizations working together to ensure perfectly good food reaches those who need it most, efficiently and transparently.</p>
+</div>
+</div>
+
+<!-- Right Side: Auth Forms -->
+<div class="w-full md:w-1/2 flex items-center justify-center p-margin-mobile md:p-gutter xl:p-lg bg-background">
+<div class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,106,64,0.04)] p-md md:p-lg relative overflow-hidden">
+<div class="md:hidden flex justify-center mb-lg">
+<a class="inline-flex items-center gap-xs font-headline-md text-headline-md font-bold text-primary" href="Homepage.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+                FoodBridge
+            </a>
+</div>
+
+<!-- Toggle Container -->
+<div class="flex p-xs bg-surface-container-low rounded-lg mb-lg relative">
+<div class="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] bg-surface-container-lowest rounded shadow-sm transition-all duration-300 ease-in-out z-0" id="toggle-indicator"></div>
+<button class="flex-1 py-sm font-label-md text-label-md text-on-surface text-center rounded relative z-10 transition-colors duration-200" id="btn-login" onclick="switchTab('login')">
+                Log In
+            </button>
+<button class="flex-1 py-sm font-label-md text-label-md text-on-surface-variant text-center rounded relative z-10 transition-colors duration-200" id="btn-signup" onclick="switchTab('signup')">
+                Sign Up
+            </button>
+</div>
+
+<!-- Login Panel -->
+<div class="auth-panel active-panel w-full" id="panel-login">
+<div class="mb-lg text-center">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Welcome back</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Enter your details to access your account.</p>
+</div>
+<form id="form-login" class="space-y-sm">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="login-email">Email</label>
+<div class="input-halo border border-outline-variant rounded bg-surface-container-lowest flex items-center px-sm transition-all">
+<span class="material-symbols-outlined text-outline-variant mr-xs text-[20px]">mail</span>
+<input class="w-full py-sm border-none bg-transparent focus:ring-0 text-on-surface placeholder:text-outline" id="login-email" placeholder="name@example.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-xs">
+<label class="block font-label-md text-label-md text-on-surface" for="login-password">Password</label>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">Forgot password?</a>
+</div>
+<div class="input-halo border border-outline-variant rounded bg-surface-container-lowest flex items-center px-sm transition-all">
+<span class="material-symbols-outlined text-outline-variant mr-xs text-[20px]">lock</span>
+<input class="w-full py-sm border-none bg-transparent focus:ring-0 text-on-surface placeholder:text-outline" id="login-password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-surface-tint text-on-primary font-label-md text-label-md py-sm px-md rounded-lg shadow-sm hover:shadow-[0_8px_20px_rgba(0,106,64,0.08)] transition-all duration-200 mt-md" type="submit">
+                Log In
+            </button>
+</form>
+</div>
+
+<!-- Signup Panel -->
+<div class="auth-panel hidden-panel w-full" id="panel-signup">
+<div class="mb-lg text-center">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Create an account</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Join our mission to bridge abundance and need.</p>
+</div>
+<form id="form-signup" class="space-y-sm">
+<div class="mb-sm">
+<span class="block font-label-md text-label-md text-on-surface mb-xs">I want to...</span>
+<div class="grid grid-cols-2 gap-sm">
+<label class="cursor-pointer relative">
+<input checked="" class="peer sr-only" name="user_type" type="radio" value="Donor"/>
+<div class="rounded-lg border border-outline-variant p-sm peer-checked:border-primary peer-checked:bg-surface-container-low transition-all text-center flex flex-col items-center gap-xs">
+<span class="material-symbols-outlined text-tertiary peer-checked:text-primary" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+<span class="font-label-md text-label-md text-on-surface">Donate Food</span>
+</div>
+<div class="absolute top-2 right-2 hidden peer-checked:block text-primary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="user_type" type="radio" value="Donee"/>
+<div class="rounded-lg border border-outline-variant p-sm peer-checked:border-primary peer-checked:bg-surface-container-low transition-all text-center flex flex-col items-center gap-xs">
+<span class="material-symbols-outlined text-tertiary peer-checked:text-primary" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-label-md text-label-md text-on-surface">Receive Food</span>
+</div>
+<div class="absolute top-2 right-2 hidden peer-checked:block text-primary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</label>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="signup-first">First Name</label>
+<div class="input-halo border border-outline-variant rounded bg-surface-container-lowest flex items-center px-sm transition-all">
+<input class="w-full py-sm border-none bg-transparent focus:ring-0 text-on-surface placeholder:text-outline" id="signup-first" placeholder="Jane" required="" type="text"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="signup-last">Last Name</label>
+<div class="input-halo border border-outline-variant rounded bg-surface-container-lowest flex items-center px-sm transition-all">
+<input class="w-full py-sm border-none bg-transparent focus:ring-0 text-on-surface placeholder:text-outline" id="signup-last" placeholder="Doe" required="" type="text"/>
+</div>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="signup-email">Email</label>
+<div class="input-halo border border-outline-variant rounded bg-surface-container-lowest flex items-center px-sm transition-all">
+<span class="material-symbols-outlined text-outline-variant mr-xs text-[20px]">mail</span>
+<input class="w-full py-sm border-none bg-transparent focus:ring-0 text-on-surface placeholder:text-outline" id="signup-email" placeholder="name@example.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="signup-password">Password</label>
+<div class="input-halo border border-outline-variant rounded bg-surface-container-lowest flex items-center px-sm transition-all">
+<span class="material-symbols-outlined text-outline-variant mr-xs text-[20px]">lock</span>
+<input class="w-full py-sm border-none bg-transparent focus:ring-0 text-on-surface placeholder:text-outline" id="signup-password" placeholder="Create a strong password" required="" type="password"/>
+</div>
+</div>
+<div class="flex items-start gap-xs mt-sm">
+<input class="mt-1 rounded text-primary border-outline-variant focus:ring-primary focus:ring-offset-0 bg-transparent" id="terms" required="" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface-variant text-[14px] leading-tight" for="terms">
+                        I agree to the <a class="text-primary hover:underline" href="terms.html">Terms of Service</a> and <a class="text-primary hover:underline" href="privacy.html">Privacy Policy</a>.
+                    </label>
+</div>
+<button class="w-full bg-primary hover:bg-surface-tint text-on-primary font-label-md text-label-md py-sm px-md rounded-lg shadow-sm hover:shadow-[0_8px_20px_rgba(0,106,64,0.08)] transition-all duration-200 mt-md" type="submit">
+                    Create Account
+                </button>
+</form>
+</div>
+</div>
+</div>
+
+<script>
+    function switchTab(tab) {
+        const loginPanel = document.getElementById('panel-login');
+        const signupPanel = document.getElementById('panel-signup');
+        const btnLogin = document.getElementById('btn-login');
+        const btnSignup = document.getElementById('btn-signup');
+        const indicator = document.getElementById('toggle-indicator');
+
+        if (tab === 'login') {
+            loginPanel.classList.remove('hidden-panel');
+            loginPanel.classList.add('active-panel');
+            
+            signupPanel.classList.remove('active-panel');
+            signupPanel.classList.add('hidden-panel');
+
+            indicator.style.transform = 'translateX(0)';
+            
+            btnLogin.classList.replace('text-on-surface-variant', 'text-on-surface');
+            btnSignup.classList.replace('text-on-surface', 'text-on-surface-variant');
+
+        } else if (tab === 'signup') {
+            signupPanel.classList.remove('hidden-panel');
+            signupPanel.classList.add('active-panel');
+            
+            loginPanel.classList.remove('active-panel');
+            loginPanel.classList.add('hidden-panel');
+
+            indicator.style.transform = 'translateX(100%)';
+            
+            btnSignup.classList.replace('text-on-surface-variant', 'text-on-surface');
+            btnLogin.classList.replace('text-on-surface', 'text-on-surface-variant');
+        }
+    }
+
+    // Handle Signup Form Submission
+    document.getElementById('form-signup').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const firstName = document.getElementById('signup-first').value;
+        const lastName = document.getElementById('signup-last').value;
+        const name = firstName;
+        const last_name = lastName;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+        const role = document.querySelector('input[name="user_type"]:checked')?.value || 'Donor';
+
+        try {
+            const response = await fetch('http://localhost:3000/api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, last_name, email, password, role })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert('Registration successful!');
+                localStorage.setItem('foodbridge_user', name);
+                window.location.href = 'Homepage.html';
+            } else {
+                alert('Signup failed: ' + (result.error || 'Unknown error'));
+            }
+
+        } catch (err) {
+            console.error(err);
+            alert('Could not connect to backend server. Make sure "node server.js" is running in CMD!');
+        }
+    });
+
+    // Handle Login Form Submission
+    window.addEventListener('DOMContentLoaded', function() {
+        const loginForm = document.getElementById('form-login');
+
+        if (!loginForm) {
+            console.error("ERROR: Could not find a form with id='form-login'!");
+            return;
+        }
+
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const emailInput = document.getElementById('login-email');
+            const passwordInput = document.getElementById('login-password');
+
+            if (!emailInput || !passwordInput) {
+                alert('Form setup error. Check inputs.');
+                return;
+            }
+
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            try {
+                const response = await fetch('http://localhost:3000/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    const displayName = (result.user && result.user.name) ? result.user.name : email;
+                    localStorage.setItem('foodbridge_user', displayName);
+                    alert('Login successful!');
+                    window.location.href = 'Homepage.html';
+                } else {
+                    alert('Login failed: ' + (result.error || 'Invalid credentials'));
+                }
+            } catch (err) {
+                console.error('Fetch error:', err);
+                alert('Could not connect to backend server. Make sure "node server.js" is running!');
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>How It Works - FoodBridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#dae5df",
+                      "inverse-on-surface": "#f2f0f0",
+                      "on-secondary-fixed": "#2a1800",
+                      "outline": "#6f7a71",
+                      "on-secondary-container": "#795b36",
+                      "tertiary-fixed-dim": "#bec9c3",
+                      "background": "#fbf9f8",
+                      "on-primary-fixed": "#002110",
+                      "primary-container": "#268456",
+                      "on-surface-variant": "#3f4941",
+                      "on-tertiary-fixed-variant": "#3f4945",
+                      "secondary": "#765934",
+                      "on-tertiary-fixed": "#141e1a",
+                      "on-primary-container": "#f6fff5",
+                      "on-surface": "#1b1c1c",
+                      "on-error": "#ffffff",
+                      "secondary-fixed": "#ffddb6",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#5c421f",
+                      "inverse-primary": "#7ed9a3",
+                      "error-container": "#ffdad6",
+                      "surface-container-high": "#eae8e7",
+                      "on-primary-fixed-variant": "#005230",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface": "#fbf9f8",
+                      "outline-variant": "#bec9bf",
+                      "secondary-fixed-dim": "#e6c093",
+                      "tertiary": "#545e5a",
+                      "surface-container": "#efeded",
+                      "on-tertiary-container": "#f5fff9",
+                      "error": "#ba1a1a",
+                      "primary-fixed-dim": "#7ed9a3",
+                      "on-secondary": "#ffffff",
+                      "surface-tint": "#006d42",
+                      "surface-variant": "#e4e2e2",
+                      "surface-container-low": "#f5f3f3",
+                      "inverse-surface": "#303030",
+                      "surface-bright": "#fbf9f8",
+                      "primary": "#006a40",
+                      "primary-fixed": "#9af6be",
+                      "secondary-container": "#fed6a7",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-container": "#6c7772",
+                      "surface-container-highest": "#e4e2e2",
+                      "on-background": "#1b1c1c",
+                      "surface-dim": "#dbd9d9"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "xs": "4px",
+                      "sm": "12px",
+                      "lg": "48px",
+                      "container-max": "1280px",
+                      "margin-mobile": "16px",
+                      "xl": "80px",
+                      "md": "24px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Manrope"
+                      ],
+                      "display-lg": [
+                              "Manrope"
+                      ],
+                      "label-sm": [
+                              "Manrope"
+                      ],
+                      "label-md": [
+                              "Manrope"
+                      ],
+                      "body-md": [
+                              "Manrope"
+                      ],
+                      "headline-lg-mobile": [
+                              "Manrope"
+                      ],
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #FDFBF7; /* Warm Cream background as per guidelines */
+        }
+        
+        .shadow-soft {
+            box-shadow: 0 4px 12px rgba(45, 138, 91, 0.04);
+        }
+        
+        .shadow-soft-hover:hover {
+            box-shadow: 0 8px 20px rgba(45, 138, 91, 0.08);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        .step-line {
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, theme('colors.primary'), theme('colors.primary') 50%, theme('colors.tertiary-fixed-dim') 50%);
+            background-size: 20px 100%;
+            z-index: 0;
+            transform: translateX(16px);
+        }
+
+        @media (max-width: 768px) {
+            .step-line {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 px-margin-mobile md:px-gutter max-w-container-max mx-auto shadow-sm bg-surface dark:bg-surface-dim">
+<div class="w-full h-16 flex items-center justify-between">
+<a class="font-headline-md text-headline-md font-bold text-primary tracking-tight" href="Homepage.html">
+                FoodBridge
+            </a>
+<div class="hidden md:flex space-x-lg items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors px-2 py-1 rounded" href="Homepage.html">Home</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="donee.html">How It Works</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors px-2 py-1 rounded" href="about.html">About</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors px-2 py-1 rounded" href="contact.html">Contact</a>
+</div>
+<!-- Example Header Right Side -->
+<div id="nav-auth-buttons" class="flex items-center gap-sm">
+    <a class="bg-primary text-on-primary hover:opacity-80 active:scale-95 transition-all rounded-lg px-4 py-2 font-label-md flex items-center gap-2" href="login.html">
+        Log In / Register
+    </a>
+</div></div>
+</nav><!-- Main Canvas -->
+<main class="flex-grow pt-[104px] pb-xl px-margin-mobile md:px-gutter max-w-container-max mx-auto w-full">
+<!-- Hero Section -->
+<section class="mb-xl text-center max-w-3xl mx-auto">
+<h1 class="font-display-lg text-display-lg mb-md text-on-surface">Bridging Abundance and Need.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                We provide a seamless logistics platform connecting surplus food from corporate donors to grassroots organizations that need it most. Discover how our streamlined process ensures zero waste and maximum impact.
+            </p>
+</section>
+<!-- Donor Journey -->
+<section class="mb-xl bg-surface-container-lowest rounded-xl shadow-soft p-lg relative overflow-hidden">
+<div class="absolute top-0 left-0 w-2 h-full bg-primary"></div>
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-xs">For Donors</h2>
+<p class="font-body-md text-on-surface-variant">Streamlined corporate surplus redistribution.</p>
+</div>
+<div class="mt-sm md:mt-0 px-md py-xs bg-tertiary-fixed text-on-tertiary-fixed rounded-full font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+                    Sustainable Impact
+                </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg relative">
+<!-- Line connecting steps (desktop only) -->
+<div class="step-line hidden md:block" style="width: calc(100% - 33%);"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-sm shadow-soft">
+<span class="material-symbols-outlined text-[32px]" data-icon="inventory_2" style="font-variation-settings: 'FILL' 0;">inventory_2</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">1. List</h3>
+<p class="font-body-md text-on-surface-variant">
+                        Quickly input details of surplus items including quantity, category, and expiration windows using our intuitive dashboard.
+                    </p>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-sm shadow-soft">
+<span class="material-symbols-outlined text-[32px]" data-icon="package_2" style="font-variation-settings: 'FILL' 0;">package_2</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">2. Prepare</h3>
+<p class="font-body-md text-on-surface-variant">
+                        Package items securely following safety guidelines. The system automatically notifies matched local organizations.
+                    </p>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-sm shadow-soft">
+<span class="material-symbols-outlined text-[32px]" data-icon="local_shipping" style="font-variation-settings: 'FILL' 0;">local_shipping</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">3. Pickup</h3>
+<p class="font-body-md text-on-surface-variant">
+                        Verified volunteers or logistics partners arrive at the designated time to collect and transport the donation.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Organization Journey -->
+<section class="mb-xl bg-surface-container-lowest rounded-xl shadow-soft p-lg relative overflow-hidden">
+<div class="absolute top-0 left-0 w-2 h-full bg-secondary"></div>
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-secondary mb-xs">For Organizations</h2>
+<p class="font-body-md text-on-surface-variant">Efficient sourcing for community support.</p>
+</div>
+<div class="mt-sm md:mt-0 px-md py-xs bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">groups</span>
+                    Community Focus
+                </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg relative">
+<!-- Line connecting steps (desktop only) -->
+<div class="step-line hidden md:block" style="width: calc(100% - 33%); background: linear-gradient(to right, theme('colors.secondary'), theme('colors.secondary') 50%, theme('colors.secondary-fixed-dim') 50%); background-size: 20px 100%;"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-sm shadow-soft">
+<span class="material-symbols-outlined text-[32px]" data-icon="search" style="font-variation-settings: 'FILL' 0;">search</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">1. Discover</h3>
+<p class="font-body-md text-on-surface-variant">
+                        Browse real-time listings of available food donations in your vicinity, filtered by category and dietary needs.
+                    </p>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-sm shadow-soft">
+<span class="material-symbols-outlined text-[32px]" data-icon="verified" style="font-variation-settings: 'FILL' 0;">verified</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">2. Claim</h3>
+<p class="font-body-md text-on-surface-variant">
+                        Reserve necessary items instantly. Our system coordinates pickup times and provides necessary documentation.
+                    </p>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-sm shadow-soft">
+<span class="material-symbols-outlined text-[32px]" data-icon="volunteer_activism" style="font-variation-settings: 'FILL' 0;">volunteer_activism</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">3. Redistribute</h3>
+<p class="font-body-md text-on-surface-variant">
+                        Receive the goods and distribute them directly to individuals and families facing food insecurity in your community.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Visual Anchor / Image Section -->
+<section class="rounded-xl overflow-hidden shadow-soft mb-xl h-64 md:h-96 relative">
+<div class="bg-cover bg-center w-full h-full absolute inset-0" data-alt="A modern, high-quality photograph showing a diverse team of volunteers efficiently loading boxes of fresh produce into a clean, branded logistics van. The setting is a sunny, bright loading dock. The overall mood is optimistic, energetic, and professional, reflecting a high-tech logistics operation focused on sustainability and community impact. The color palette features natural greens of the produce and clean whites." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBWEAOtR1I9v9W8BZd2E97vWB1Y9W317ygOQuANrPY5G9ufTyewzGJu9LRuEwMCV1pbe8F2S4sOZNF6DlbIpLvfHHIAFYPMLKUCn8gaLoD_y4VHsloP-DyVSI-a78zfbOFynZ_Zm2nK56FcvjOwk58fcyHCSV25XHAQajaDoP1DBn2sA_F_Rm3Ck8wlK-axpSVrxex29W4TPvLYofIvXnXTB29VJxktjpufT8WPTtRA32EPoqfqNs1h')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent flex items-end p-lg">
+<p class="text-surface-container-lowest font-headline-md text-headline-md">Together, we can solve the logistics of hunger.</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl bg-surface-container-high dark:bg-surface-container-lowest px-margin-mobile md:px-gutter flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">
+            FoodBridge
+        </div>
+<div class="flex flex-wrap justify-center gap-md font-label-md text-label-md">
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 underline" href="privacy.html">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 underline" href="terms.html">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 underline" href="homepage.html">Volunteer Portal</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 underline" href="contact.html">Donate Now</a>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant">
+            © 2024 FoodBridge. Bridging abundance and need.
+        </div>
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const loggedInUser = localStorage.getItem('foodbridge_user');
+        const navAuthButtons = document.getElementById('nav-auth-buttons');
+
+        if (loggedInUser && navAuthButtons) {
+            navAuthButtons.innerHTML = `
+                <span class="text-on-surface-variant font-medium text-sm hidden sm:inline">Hello, ${loggedInUser}</span>
+                <button onclick="logout()" class="bg-surface-container-high hover:bg-error-container hover:text-on-error-container text-on-surface px-4 py-2 rounded-lg font-label-md text-label-md transition-colors">
+                    Log Out
+                </button>
+            `;
+        }
+    });
+
+    function logout() {
+        localStorage.removeItem('foodbridge_user');
+        window.location.href = 'Homepage.html';
+    }
+</script>
+</body></html>

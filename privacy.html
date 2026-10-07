@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Privacy Policy - FoodBridge</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#006a40",
+                        "on-primary": "#ffffff",
+                        background: "#fbf9f8",
+                        surface: "#fbf9f8",
+                        "on-surface": "#1b1c1c",
+                        "on-surface-variant": "#3f4941",
+                        "surface-container": "#efeded",
+                        "outline-variant": "#bec9bf",
+                    },
+                    fontFamily: {
+                        body-md: ["Manrope"],
+                        headline-md: ["Manrope"],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>body { font-family: 'Manrope', sans-serif; }</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col justify-between">
+
+    <!-- Top Navigation -->
+    <nav class="w-full px-6 py-4 flex items-center justify-between max-w-[1280px] mx-auto">
+        <a class="text-xl font-bold text-primary flex items-center gap-1" href="Homepage.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+            FoodBridge
+        </a>
+        <a href="Homepage.html" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">
+            Back to Home
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-[900px] mx-auto px-6 py-12 flex flex-col gap-8">
+        <div class="flex flex-col gap-2">
+            <h1 class="text-3xl md:text-4xl font-bold text-on-surface">Privacy Policy</h1>
+            <p class="text-xs text-on-surface-variant">Last updated: October 2026</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl border border-outline-variant shadow-sm flex flex-col gap-6 text-on-surface-variant text-sm md:text-base leading-relaxed">
+            <section class="flex flex-col gap-2">
+                <h2 class="text-lg font-bold text-on-surface">1. Information We Collect</h2>
+                <p>When you register an account or submit inquiries through our contact forms, we collect information such as your name, email address, user role (Donor or Donee), and message content to manage your account and facilitate food coordination.</p>
+            </section>
+
+            <section class="flex flex-col gap-2">
+                <h2 class="text-lg font-bold text-on-surface">2. How We Use Your Information</h2>
+                <p>Your data is used strictly to provide and maintain the FoodBridge service, communicate updates regarding food pickups, authenticate your login session, and respond to support inquiries.</p>
+            </section>
+
+            <section class="flex flex-col gap-2">
+                <h2 class="text-lg font-bold text-on-surface">3. Data Security</h2>
+                <p>We implement secure database storage practices using Supabase to protect your personal information from unauthorized access, alteration, or disclosure.</p>
+            </section>
+
+            <section class="flex flex-col gap-2">
+                <h2 class="text-lg font-bold text-on-surface">4. Third-Party Sharing</h2>
+                <p>We do not sell, trade, or rent your personal identification information to third parties. Information is only shared when necessary to coordinate safe food donations between verified community members.</p>
+            </section>
+
+            <section class="flex flex-col gap-2">
+                <h2 class="text-lg font-bold text-on-surface">5. Contact Us</h2>
+                <p>If you have any privacy-related questions, feel free to contact us at <a href="mailto:jeyapreetha7307@gmail.com" class="text-primary font-semibold hover:underline">jeyapreetha7307@gmail.com</a>.</p>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-6 text-center text-xs text-on-surface-variant border-t border-outline-variant/30">
+        © 2026 FoodBridge. All rights reserved.
+    </footer>
+
+</body>
+</html>

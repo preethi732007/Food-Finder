@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FoodBridge - Connecting Abundance with Need</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                    "inverse-primary": "#7ed9a3",
+                    "secondary-fixed": "#ffddb6",
+                    "secondary-container": "#fed6a7",
+                    "primary-container": "#268456",
+                    "on-primary-fixed-variant": "#005230",
+                    "on-primary-fixed": "#002110",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#3f4941",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-surface": "#1b1c1c",
+                    "primary-fixed": "#9af6be",
+                    "surface-dim": "#dbd9d9",
+                    "background": "#fbf9f8",
+                    "secondary-fixed-dim": "#e6c093",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#2a1800",
+                    "surface-container": "#efeded",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#006d42",
+                    "secondary": "#765934",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f2f0f0",
+                    "outline": "#6f7a71",
+                    "on-tertiary-fixed": "#141e1a",
+                    "tertiary": "#545e5a",
+                    "on-tertiary-container": "#f5fff9",
+                    "on-tertiary-fixed-variant": "#3f4945",
+                    "tertiary-fixed": "#dae5df",
+                    "surface": "#fbf9f8",
+                    "primary": "#006a40",
+                    "on-primary-container": "#f6fff5",
+                    "surface-container-highest": "#e4e2e2",
+                    "surface-bright": "#fbf9f8",
+                    "inverse-surface": "#303030",
+                    "surface-container-high": "#eae8e7",
+                    "outline-variant": "#bec9bf",
+                    "primary-fixed-dim": "#7ed9a3",
+                    "surface-container-low": "#f5f3f3",
+                    "on-background": "#1b1c1c",
+                    "tertiary-container": "#6c7772",
+                    "tertiary-fixed-dim": "#bec9c3",
+                    "surface-variant": "#e4e2e2",
+                    "on-secondary-container": "#795b36",
+                    "on-secondary-fixed-variant": "#5c421f"
+              },
+              "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+              },
+              "spacing": {
+                    "sm": "12px",
+                    "container-max": "1280px",
+                    "margin-mobile": "16px",
+                    "lg": "48px",
+                    "xl": "80px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "md": "24px"
+              },
+              "fontFamily": {
+                    "body-lg": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "headline-md": ["Manrope"]
+              },
+              "fontSize": {
+                    "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                    "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                    "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                    "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                    "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                    "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                    "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+              }
+        },
+      },
+    }
+</script>
+</head>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const loggedInUser = localStorage.getItem('foodbridge_user');
+        const navAuthButtons = document.getElementById('nav-auth-buttons');
+        const heroSection = document.getElementById('hero-section');
+
+        if (loggedInUser) {
+            // Logged-in Navigation Slot
+            if (navAuthButtons) {
+                navAuthButtons.innerHTML = `
+                    <span class="text-on-surface-variant font-medium text-sm hidden sm:inline">Hello, ${loggedInUser}</span>
+                    <button onclick="logout()" class="bg-surface-container-high hover:bg-error-container hover:text-on-error-container text-on-surface px-4 py-2 rounded-lg font-label-md text-label-md transition-colors">
+                        Log Out
+                    </button>
+                `;
+            }
+
+            // Logged-in Hero Section Customization
+            if (heroSection) {
+                heroSection.innerHTML = `
+                    <div class="flex-1 space-y-6 z-10">
+                        <span class="text-primary font-bold text-sm tracking-wider uppercase">Welcome Back</span>
+                        <h1 class="font-display-lg text-3xl md:text-5xl font-bold text-on-surface tracking-tight">Ready to make an impact today?</h1>
+                        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                            Coordinate surplus food redistribution, track active community capacities, and manage your network seamlessly from your home feed.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-sm pt-xs">
+                            <button onclick="window.location.href='contact.html'" class="bg-primary text-on-primary hover:opacity-90 active:scale-95 transition-all rounded-lg px-6 py-3 font-label-md shadow-[0_4px_12px_rgba(0,106,64,0.15)]">
+                                Post Donation
+                            </button>
+                            <button onclick="window.location.href='contact.html'" class="bg-surface-container-lowest text-primary border border-primary/20 hover:bg-surface-container-low active:scale-95 transition-all rounded-lg px-6 py-3 font-label-md">
+                                Need Food
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+    });
+
+    function logout() {
+        localStorage.removeItem('foodbridge_user');
+        window.location.reload(); 
+    }
+</script>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 bg-surface dark:bg-on-background shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-xl py-base max-w-container-max mx-auto">
+<a class="font-headline-md text-headline-md text-primary dark:text-inverse-primary tracking-tight" href="Homepage.html">FoodBridge</a>
+<nav class="hidden md:flex gap-md items-center">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="Homepage.html">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors px-2 py-1 font-label-md text-label-md" href="donee.html">How It Works</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors px-2 py-1 font-label-md text-label-md" href="about.html">About</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors px-2 py-1 font-label-md text-label-md" href="contact.html">Contact</a>
+</nav>
+<div id="nav-auth-buttons" class="flex items-center gap-sm">
+<a class="bg-primary text-on-primary hover:opacity-80 active:scale-95 transition-all rounded-lg px-4 py-2 font-label-md flex items-center gap-2" href="loin.html">
+                Log In / Register
+            </a>
+</div>
+</div>
+</header>
+
+<main class="flex-grow">
+<section id="hero-section" class="relative pt-lg pb-xl px-margin-mobile md:px-xl max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-lg">
+<div class="flex-1 space-y-6 z-10">
+<h1 class="font-display-lg text-display-lg md:text-[64px] md:leading-[72px] text-on-surface tracking-tight">
+                    Don't Waste Food. <br/><span class="text-primary">Share It.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                    FoodBridge connects surplus food with trusted organizations and helps good food reach people who need it. A sophisticated logistics bridge between abundance and need.
+                </p>
+<div class="flex flex-col sm:flex-row gap-sm pt-xs">
+<button onclick="window.location.href='contact.html'" class="bg-primary text-on-primary hover:opacity-90 active:scale-95 transition-all rounded-lg px-6 py-3 font-label-md shadow-[0_4px_12px_rgba(0,106,64,0.15)] hover:shadow-[0_8px_20px_rgba(0,106,64,0.2)]">
+                        Donate Surplus Food
+                    </button>
+<button onclick="window.location.href='contact.html'" class="bg-surface-container-lowest text-primary border border-primary/20 hover:bg-surface-container-low active:scale-95 transition-all rounded-lg px-6 py-3 font-label-md">
+                        Find Food
+                    </button>
+</div>
+<div class="flex items-center gap-4 pt-sm">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-surface object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWSye_aSSFamJAP0a8rVqVbpwB4P66XUiuc8yd9GCZfF7v_cLqojPcCsv9D1sFkA2ySHYgS8ou8nMNUteEa-00DnHnfewNr07W6Qj4-0nyOXsNCyFwikYrTq_sVYssmuBSQ_HrnL9r8FU0_Cb6Q14EezN5R-1hKaI6xps4pwBkY0INmrH2rSAmLb1SolLdFX1ElsWVcK5tQ54EKEhtSk9kOi6l9xH6et2wn3RDXWAie2Cu2Z-B680Z"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbq_BZJDdJ5uIiRAREttFgAlhJjqTuc5TsuywT5XL6I0_Y-5ho9EUx9VZLblAKvBjCNpvr1pkptPG3vb3QkPmthqaCsEi-xEOKHSx5JGCiQ7JOwRVevjmJvny-EbBsXqu-47bIRT_kuS12zRKlKsRhlnwC4apL-PSDGJrn6GBcq9RFplCjkJCC7MsIEKcFucHlxOwAU4-fz38N0W4LyAKislCPY9uSxl6HcC3MVJNlBD_SEzkjkOTT"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg9fK9jCeYB6wBJpkyDoGeH7BfpElD0q7DhAm8E07ne6ySMJt6bXb6Jkoxzl3QP1XHeAJrGIMKYdgm6_8igS86FpPDxq90uyIji37LfDgqFy64p-aMDRl3hNmYWyrOYqYANDuh7Mj0b5e0G1QnvaJc3WwUFD5K0GXYnLin3OjZmXO2FHjoM1X0PJd3SjluNW4WP1bF-_HWz7P2OLdUt7juNhJx2QmkgfFVnugvmkPxDsJLThc1pVNI"/>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Join 500+ daily volunteers</p>
+</div>
+</div>
+<div class="flex-1 w-full relative">
+<div class="absolute -inset-4 bg-tertiary-fixed/30 rounded-[2rem] blur-2xl z-0"></div>
+<img class="relative z-10 w-full h-[400px] md:h-[600px] object-cover rounded-xl shadow-[0_4px_24px_rgba(0,106,64,0.08)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4UJT2sWZpps9iHO5oaIG0CZ8GbMTxzfSUSomngnOXdbRTEun9Y1HM5EG1gnCcoxktJbGgRXfZkyZ5iNjEt7lggbp5xD6kKd1bsA0w7OytUHrOyvF3pE1RibMztAAz4fSyqVgtWapotwB_sKJrgRzUYCBzTYrHg4nRX6NOnEsD1ki62dVaFYbb_ovtxrdEew3B81WiK_Hc_feKuqAGuCMXKJyKzzDgnIk5Y1_t3gIrmtRDTD6-4dOn"/>
+<!-- Floating Info Card -->
+<div class="absolute bottom-6 left-6 -right-6 md:right-auto z-20 bg-surface-container-lowest/90 backdrop-blur-md p-md rounded-xl shadow-[0_8px_32px_rgba(0,106,64,0.12)] border border-outline-variant/30 max-w-[280px]">
+<div class="flex items-center gap-sm mb-xs">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface">Mission Accomplished</p>
+</div>
+<p class="font-body-sm text-sm text-on-surface-variant">50kg of fresh produce rescued from local markets today.</p>
+</div>
+</div>
+</section>
+
+<!-- How It Works (Bento Grid) -->
+<section class="py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto bg-surface-container-low rounded-3xl my-lg" id="how-it-works">
+<div class="text-center mb-lg">
+<h2 class="font-headline-lg text-headline-lg md:text-[40px] text-on-surface mb-xs">How It Works</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">A seamless logistics process designed to move food from where it is to where it's needed, efficiently.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Step 1 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_12px_rgba(0,106,64,0.04)] hover:shadow-[0_8px_24px_rgba(0,106,64,0.08)] transition-all flex flex-col items-start border border-outline-variant/20">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed text-primary flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-3xl">storefront</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">1. Donate</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Restaurants, farms, and event organizers list their surplus, high-quality food on our platform.</p>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_12px_rgba(0,106,64,0.04)] hover:shadow-[0_8px_24px_rgba(0,106,64,0.08)] transition-all flex flex-col items-start border border-outline-variant/20 md:-translate-y-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed text-primary flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-3xl">hub</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">2. Connect</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Our intelligent algorithm matches the donation with a nearby vetted NGO or community kitchen in real-time.</p>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_12px_rgba(0,106,64,0.04)] hover:shadow-[0_8px_24px_rgba(0,106,64,0.08)] transition-all flex flex-col items-start border border-outline-variant/20">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed text-primary flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-3xl">local_shipping</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">3. Share</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Volunteers or partner fleets collect the food and distribute it directly to those experiencing food insecurity.</p>
+</div>
+</div>
+</section>
+
+<!-- Impact Section -->
+<section class="py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row gap-lg items-center">
+<div class="flex-1 space-y-sm">
+<h2 class="font-headline-lg text-headline-lg md:text-[40px] text-on-surface">Every Meal Counts</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant pb-sm">We believe in radical transparency. Here is the real-time impact our network of donors and volunteers is making.</p>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-primary/5 p-md rounded-xl border border-primary/10">
+<p class="font-display-lg text-4xl font-bold text-primary mb-1">1.2M+</p>
+<p class="font-label-md text-on-surface-variant">Meals Saved</p>
+</div>
+<div class="bg-secondary-container/20 p-md rounded-xl border border-secondary/10">
+<p class="font-display-lg text-4xl font-bold text-secondary mb-1">4,500</p>
+<p class="font-label-md text-on-surface-variant">Food Donors</p>
+</div>
+<div class="bg-tertiary-fixed/50 p-md rounded-xl border border-tertiary/10">
+<p class="font-display-lg text-4xl font-bold text-tertiary mb-1">850</p>
+<p class="font-label-md text-on-surface-variant">Organizations</p>
+</div>
+<div class="bg-surface-container-highest p-md rounded-xl border border-outline-variant/30">
+<p class="font-display-lg text-4xl font-bold text-on-surface mb-1">600T</p>
+<p class="font-label-md text-on-surface-variant">CO2 Reduced</p>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full rounded-2xl overflow-hidden relative shadow-[0_12px_40px_rgba(0,106,64,0.1)]">
+<img class="w-full h-[500px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2xb4LG0NMiEcEx-QgH54na7mC6KSJmyourolbukvlKdVxJqXMlZcBWBXy94dfyZwCCJqxUlyjyDvEv-qq4T5zsAufn3HBZgNcjCToWczuxO-_by0hIav-F3vWILLLl5xo0b_VWW2NG-Oer5Az23jxQWM8donw7pZ0qxQN0JcznIImwBkM5NgMAi4WXyAUapMxfR9QTvmy29ya-EYC63JUm5dYijdysWzGDBzuO5CcLOivLjqQII4t"/>
+<!-- Progress Overlay -->
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-lg pt-24 text-white">
+<p class="font-label-md mb-2 opacity-90">Current Campaign: Community Kitchen Replenish</p>
+<div class="h-2 w-full bg-white/30 rounded-full overflow-hidden mb-2">
+<div class="h-full bg-primary-fixed w-[75%] rounded-full"></div>
+</div>
+<div class="flex justify-between font-label-sm opacity-80">
+<span>7,500 / 10,000 meals</span>
+<span>75% Funded</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Final CTA -->
+<section class="py-xl px-margin-mobile md:px-xl max-w-container-max mx-auto mb-lg">
+<div class="bg-surface-tint rounded-3xl p-lg md:p-xl text-center relative overflow-hidden shadow-lg">
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZm`')] opacity-50"></div>
+<div class="relative z-10 max-w-2xl mx-auto space-y-6">
+<h2 class="font-display-lg text-display-lg md:text-[48px] text-on-primary">Have Extra Food? Turn It Into Someone's Next Meal.</h2>
+<p class="font-body-lg text-body-lg text-primary-fixed max-w-lg mx-auto">Join thousands of businesses already reducing waste and feeding communities. Setup takes less than 5 minutes.</p>
+<button onclick="window.location.href='contact.html'" class="mt-sm bg-surface-container-lowest text-primary hover:bg-surface-container-low active:scale-95 transition-all rounded-lg px-8 py-4 font-label-md text-lg shadow-md flex items-center gap-2 mx-auto">
+                    Donate Food <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-container-high dark:bg-inverse-surface mt-auto">
+<div class="w-full px-margin-mobile md:px-xl py-lg max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex flex-col items-center md:items-start gap-1">
+<span class="font-headline-md text-headline-md text-primary dark:text-inverse-primary tracking-tight">FoodBridge</span>
+<span class="font-body-sm text-sm text-on-surface-variant dark:text-outline-variant">© 2026 FoodBridge. Connecting Abundance with Need.</span>
+</div>
+<nav class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary hover:underline transition-all" href="#">Impact Report</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary hover:underline transition-all" href="privacy.html">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary hover:underline transition-all" href="terms.html">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-inverse-primary hover:underline transition-all" href="contact.html">Volunteer</a>
+</nav>
+</div>
+</footer>
+</body>
+</html>
