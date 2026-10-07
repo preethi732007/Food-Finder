@@ -52,11 +52,19 @@ app.post('/api/signup', async (req, res) => {
             return res.status(400).json({ error: error.message });
         }
 
-        // Trigger Email Alert
+        // 1. Send alert email TO YOU
         await sendEmailAlert(
             'New FoodBridge Registration!', 
-            `A new user just registered on FoodBridge:\n\nName: ${name} ${last_name || ''}\nEmail: ${email}\nRole: ${role}`
+            `A new user registered:\n\nName: ${name} ${last_name || ''}\nEmail: ${email}\nRole: ${role}`
         );
+
+        // 2. Send welcome confirmation email TO THE USER
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: email, // <--- Sends directly to the user who just signed up!
+            subject: 'Welcome to FoodBridge!',
+            text: `Hi ${name},\n\nThank you for joining FoodBridge as a ${role}! We're thrilled to have you help us connect abundance with need.\n\nBest regards,\nThe FoodBridge Team`
+        });
 
         res.status(200).json({ message: 'User registered successfully!' });
     } catch (err) {
@@ -64,7 +72,6 @@ app.post('/api/signup', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
-
 // 4. CONTACT API ROUTE (Saves to Supabase & Sends Email Alert)
 app.post('/api/contact', async (req, res) => {
     try {
@@ -79,11 +86,19 @@ app.post('/api/contact', async (req, res) => {
             return res.status(400).json({ error: error.message });
         }
 
-        // Trigger Email Alert
+        // 1. Send contact alert TO YOU
         await sendEmailAlert(
             `New Contact Message: ${subject || 'General Inquiry'}`, 
-            `You received a new message from your contact form:\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`
+            `Message from: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
         );
+
+        // 2. Send confirmation receipt TO THE USER
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: email, // <--- Sends directly to the person who submitted the contact form!
+            subject: 'We received your message - FoodBridge',
+            text: `Hi ${name},\n\nThank you for reaching out to FoodBridge! We have received your message regarding "${subject || 'Inquiry'}" and will get back to you shortly.\n\nBest regards,\nThe FoodBridge Team`
+        });
 
         res.status(200).json({ message: 'Message saved successfully!' });
     } catch (err) {
@@ -91,7 +106,6 @@ app.post('/api/contact', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
-
 // 5. LOGIN API ROUTE (Verifies email and password)
 app.post('/api/login', async (req, res) => {
     try {
